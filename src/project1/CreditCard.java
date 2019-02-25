@@ -4,7 +4,7 @@ package project1;
 /**
  * Name: Adam Potter
  * Date: 2/25/19 
- * Project description:  
+ * Project description:  HI! 
  * 
  */
 public class CreditCard {
