@@ -1,6 +1,7 @@
 
 package project1;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -26,7 +27,16 @@ public class CreditCardTester {
             System.out.println("What is your name?");
             String name = keyBoard.next();
             System.out.println("How much money do you have?");
-            double balance = userInput.nextDouble();
+            double balance = 0;
+            boolean x = false;
+            do{
+            try{
+            balance = userInput.nextDouble();
+            } catch(InputMismatchException e){System.out.println("Invalded input"); 
+            userInput.nextLine(); x = true;}
+            } while(x);
+            
+            
             CreditCard c2 = new CreditCard(name, balance);
             System.out.println("Your account is all set up your account number is:"
                     + " " + c2.getAccountNumber());
@@ -40,7 +50,13 @@ public class CreditCardTester {
                 System.out.println("[3]Make a payment.");
                 System.out.println("[4]Take out a cash advance.");
                 System.out.println("[5] Exit program");
-                int userInput2 = keyBoard.nextInt();
+                
+                int userInput2 = 100;
+                keyBoard.nextLine();
+                try{
+                userInput2 = keyBoard.nextInt();
+                
+                }catch(InputMismatchException e){System.out.println("Invalded input!");continue; }
                 
                 if(userInput2 == 0){
                     System.out.println("Your account balance is: " + 
@@ -81,9 +97,13 @@ public class CreditCardTester {
                     
                 }
                 
-                else { 
+                else if (userInput2 == 5){ 
                     System.out.println("Have a nice day!");
                     System.exit(0);
+                }
+                
+                else{
+                    System.out.println("Invaled input!");
                 }
                 
             }while(true);

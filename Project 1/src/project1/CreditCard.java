@@ -15,7 +15,7 @@ public class CreditCard {
        
     
     
-    //Write constructor methods here
+    //Write constructor methods here.
     
    public CreditCard(){
        name = "default";
