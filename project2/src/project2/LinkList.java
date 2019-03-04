@@ -21,6 +21,7 @@ public class LinkList {
 String name = new String("the");
 String the = new String ("the");
 the.concat("!");
+//the
 System.out.println(the);       
         
     }
