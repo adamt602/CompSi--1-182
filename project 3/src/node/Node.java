@@ -6,7 +6,7 @@
  * Usage: 
  */
 package node;
-//Testing
+//Testing this is so cool XD
 
 public class Node {
     private Object item;
