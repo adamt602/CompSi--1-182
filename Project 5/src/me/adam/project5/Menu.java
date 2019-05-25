@@ -16,12 +16,13 @@ public class Menu {
         Scanner personsName = new Scanner(System.in);
         PhoneBook tree = new PhoneBook();
         int input = -1;
-        while (input != 0) {
+        while (input != 5) {
             System.out.println("Press one of the following corresponding numbers");
             System.out.println("[1] To add somone to the phone book");
             System.out.println("[2] To delete someone from the phone book");
             System.out.println("[3] To search for someone in the phone book");
-            System.out.println("[4] To quite the program");
+            System.out.println("[4] To find the exact person you are looking for.");
+            System.out.println("[5] To quite the program");
             input = keyBoard.nextInt();
 
             switch (input) {
@@ -43,8 +44,13 @@ public class Menu {
                     tree.inorder();
                     System.out.println(tree.isEmptyCheck());
                     break;
+                    
+                case 4: 
+                    System.out.println("Type the name you would like to search for: ");
+                    name = personsName.nextLine();
+                    tree.helper(name); break;
 
-                case 4:
+                case 5:
                     System.exit(0);
                     break;
 

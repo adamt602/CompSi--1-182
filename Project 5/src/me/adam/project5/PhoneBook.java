@@ -68,6 +68,31 @@ public class PhoneBook {
         inorderRec(root);
 
     }
+    
+    public void helper(String name){
+        searchFor(root, name);
+    }
+    
+    public void searchFor(Person root, String name){
+        
+        if (root != null && root.getName().hashCode() != name.hashCode()) {
+            searchFor(root.getLeft(), name);
+          if(root.getName().hashCode() != name.hashCode()){
+            
+            searchFor(root.getRight(), name);
+          }
+          
+        }
+        
+        if(root != null && root.getName().hashCode() == name.hashCode()){
+            System.out.println(root.getName() + " " + root.getPhoneNumber());
+        }
+        
+        
+        
+        
+        
+    }
 
     public void inorderRec(Person root) {
         if (root != null) {
