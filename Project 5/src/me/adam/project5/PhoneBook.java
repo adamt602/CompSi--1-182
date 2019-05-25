@@ -132,6 +132,27 @@ public class PhoneBook {
 
         return root;
     }
+    
+    private Person findParent(Person curr, Person child){
+        
+        if(curr.getLeft() == child || curr.getRight() == child){
+            return curr;
+        }
+        
+        else if(child.getName().hashCode() > curr.getName().hashCode()){
+            findParent(curr.getRight(), child);
+        }
+        
+        else if(child.getName().hashCode() < curr.getName().hashCode()) {
+            findParent(curr.getLeft(), child);
+            
+        }
+        
+        
+            return curr;
+        
+            
+    }
 
     public String minValue(Person root) {
         String minv = root.getName();
