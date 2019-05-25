@@ -17,26 +17,27 @@ public class Menu {
         PhoneBook tree = new PhoneBook();
         int input = -1;
         while (input != 5) {
-            System.out.println("Press one of the following corresponding numbers");
+            System.out.println("\n\nPress one of the following corresponding numbers");
             System.out.println("[1] To add somone to the phone book");
             System.out.println("[2] To delete someone from the phone book");
             System.out.println("[3] To search for someone in the phone book");
             System.out.println("[4] To find the exact person you are looking for.");
             System.out.println("[5] To quite the program");
+            System.out.print("----------------------------------------------\n> ");
             input = keyBoard.nextInt();
 
             switch (input) {
 
                 case 1:
-                    System.out.println("Type the name you would like to add.");
+                    System.out.print("Type the name you would like to add.\n>");
                     String name = personsName.nextLine();
-                    System.out.println("Type the number you would like to add.");
+                    System.out.print("Type the number you would like to add.\n>");
                     String number = personsName.nextLine();
                     tree.insert(name, number);
                     break;
 
                 case 2:
-                    System.out.println("Type the name you would like to delete");
+                    System.out.print("Type the name you would like to delete\n>");
                     tree.deleteKey(personsName.nextLine());
                     break;
 
@@ -44,9 +45,9 @@ public class Menu {
                     tree.inorder();
                     System.out.println(tree.isEmptyCheck());
                     break;
-                    
+
                 case 4: 
-                    System.out.println("Type the name you would like to search for: ");
+                    System.out.print("Type the name you would like to search for\n>");
                     name = personsName.nextLine();
                     tree.helper(name); break;
 
@@ -58,32 +59,6 @@ public class Menu {
 
         }
 
-//        tree.insert("Zyan");
-//        tree.insert("todd");
-//        tree.insert("bob");
-//        tree.insert("sally");
-//        tree.insert("Adam");
-//        tree.insert("Sydeny");
-//        tree.insert("it");
-
-        tree.inorder();
-        System.out.println("\n");
-        System.out.println("Inorder traversal of the given tree");
-        tree.inorder();
-
-        System.out.println("\nDelete Adam");
-        tree.deleteKey("Adam");
-        System.out.println("Inorder traversal of the modified tree");
-        tree.inorder();
-
-        System.out.println("\nDelete it");
-        tree.deleteKey("it");
-        System.out.println("Inorder traversal of the modified tree");
-        tree.inorder();
-
-        System.out.println("\nDelete Sydeny");
-        tree.deleteKey("Sydeny");
-        System.out.println("Inorder traversal of the modified tree");
 
     }
 

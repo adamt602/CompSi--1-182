@@ -14,14 +14,13 @@ public class PhoneBook {
     public PhoneBook() {
         root = null;
     }
-    
-    public boolean isEmptyCheck(){
+
+    public boolean isEmptyCheck() {
         return root == null;
     }
 
     public Person search(Person root, String name) {
-        
-        
+
         // Base Cases: root is null or key is present at root 
         if (root == null || root.getName().hashCode() == name.hashCode()) {
             return root;
@@ -30,7 +29,7 @@ public class PhoneBook {
         // val is greater than root's key 
         if (root.getName().hashCode() > name.hashCode()) {
             return search(root.getLeft(), name);
-            
+
         }
 
         // val is less than root's key 
@@ -53,11 +52,10 @@ public class PhoneBook {
         /* Otherwise, recur down the tree */
         if (name.hashCode() < root.getName().hashCode()) {
             root.setLeft(insertRec(root.getLeft(), name, number));
-            
-            
+
         } else if (name.hashCode() > root.getName().hashCode()) {
             root.setRight(insertRec(root.getRight(), name, number));
-            
+
         }
 
         /* return the (unchanged) node pointer */
@@ -68,30 +66,26 @@ public class PhoneBook {
         inorderRec(root);
 
     }
-    
-    public void helper(String name){
+
+    public void helper(String name) {
         searchFor(root, name);
     }
-    
-    public void searchFor(Person root, String name){
-        
+
+    public void searchFor(Person root, String name) {
+
         if (root != null && root.getName().hashCode() != name.hashCode()) {
             searchFor(root.getLeft(), name);
-          if(root.getName().hashCode() != name.hashCode()){
-            
-            searchFor(root.getRight(), name);
-          }
-          
+            if (root.getName().hashCode() != name.hashCode()) {
+
+                searchFor(root.getRight(), name);
+            }
+
         }
-        
-        if(root != null && root.getName().hashCode() == name.hashCode()){
+
+        if (root != null && root.getName().hashCode() == name.hashCode()) {
             System.out.println(root.getName() + " " + root.getPhoneNumber());
         }
-        
-        
-        
-        
-        
+
     }
 
     public void inorderRec(Person root) {
