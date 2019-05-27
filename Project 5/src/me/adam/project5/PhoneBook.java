@@ -7,9 +7,15 @@
  */
 package me.adam.project5;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
 public class PhoneBook {
 
     private Person root, leftTree, rightTree;
+    private int numberOfNodes;
 
     public PhoneBook() {
         root = null;
@@ -37,8 +43,10 @@ public class PhoneBook {
     }
 
     public void insert(String name, String number) {
+        numberOfNodes ++;
         //method stub
         root = insertRec(root, name, number);
+        
 
     }
 
@@ -124,7 +132,7 @@ public class PhoneBook {
 
             // node with two children: Get the inorder successor (smallest 
             // in the right subtree) 
-            root.setName(minValue(root));
+            root.setName(minValue(root.getRight()));
 
             // Delete the inorder successor 
             root.setRight(deleteRec(root.getRight(), root.getName()));
@@ -132,35 +140,63 @@ public class PhoneBook {
 
         return root;
     }
-    
-    private Person findParent(Person curr, Person child){
-        
-        if(curr.getLeft() == child || curr.getRight() == child){
-            return curr;
-        }
-        
-        else if(child.getName().hashCode() > curr.getName().hashCode()){
-            findParent(curr.getRight(), child);
-        }
-        
-        else if(child.getName().hashCode() < curr.getName().hashCode()) {
-            findParent(curr.getLeft(), child);
-            
-        }
-        
-        
-            return curr;
-        
-            
-    }
 
-    public String minValue(Person root) {
+    public String minValue (Person root){
         String minv = root.getName();
-        while (root.getLeft() != null) {
-            minv = root.getName();
+        
+        while(root.getLeft() != null){
+            minv = root.getLeft().getName();
             root = root.getLeft();
         }
         return minv;
     }
+    
+    public void WriteTo(){
+        writeToFile(root);
+    }
+    
+    public void writeToFile(Person toWrite){
+        
+//        if (root != null) {
+//            inorderRec(root.getLeft());
+//            System.out.println(root.getName() + " " + root.getPhoneNumber());
+//            inorderRec(root.getRight());
+//        }
+        
+        
+        
+        File outPutFileStream = new File("dataOut.txt");
+         try( PrintWriter output = new PrintWriter((new FileWriter(outPutFileStream, true)))){
+             
+             
+             
+              output.println(root.getName());
+              output.println(root.getPhoneNumber());
+              
+       
+         
+        
+        
+        
+        } catch (Exception e){
+            System.out.println(e);
+           
+        }
+        }
+    
+    public void the(Person root) {
+        if (root != null) {
+            inorderRec(root.getLeft());
+            writeToFile(root);
+            inorderRec(root.getRight());
+        }
+    }
+        
+            
+        
+        
+         
+         
+    }
 
-}
+

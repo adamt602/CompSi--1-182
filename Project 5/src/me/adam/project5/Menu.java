@@ -37,7 +37,7 @@ public class Menu {
                     break;
 
                 case 2:
-                    System.out.print("Type the name you would like to delete\n>");
+                    System.out.print("Type the name you w^ould like to delete\n>");
                     tree.deleteKey(personsName.nextLine());
                     break;
 
@@ -52,6 +52,7 @@ public class Menu {
                     tree.helper(name); break;
 
                 case 5:
+                    tree.WriteTo();
                     System.exit(0);
                     break;
 
