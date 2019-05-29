@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 public class PhoneBook {
 
@@ -152,10 +153,10 @@ public class PhoneBook {
     }
     
     public void WriteTo(){
-        writeToFile(root);
+        the(root);
     }
     
-    public void writeToFile(Person toWrite){
+    public void writeToFile(String name, String number){
         
 //        if (root != null) {
 //            inorderRec(root.getLeft());
@@ -165,13 +166,14 @@ public class PhoneBook {
         
         
         
-        File outPutFileStream = new File("dataOut.txt");
+        File outPutFileStream = new File("data.txt");
          try( PrintWriter output = new PrintWriter((new FileWriter(outPutFileStream, true)))){
              
              
              
-              output.println(root.getName());
-              output.println(root.getPhoneNumber());
+              output.println(name);
+              output.println(number);
+               
               
        
          
@@ -185,11 +187,63 @@ public class PhoneBook {
         }
     
     public void the(Person root) {
-        if (root != null) {
-            inorderRec(root.getLeft());
-            writeToFile(root);
-            inorderRec(root.getRight());
+        if(root == null){
+            return;
         }
+        
+        
+        the(root.getLeft());
+        writeToFile(root.getName() , root.getPhoneNumber());
+        the(root.getRight());
+    }
+    
+    public void takeInPeople(){
+        if(root == null){
+        
+         try{ 
+        File inputFileStream = new File("data.txt");
+        Scanner input = new Scanner(inputFileStream);
+        while(input.hasNextLine()){
+        insert(input.nextLine(), input.nextLine());
+        }
+        
+        input.close();
+        
+        
+        } catch (FileNotFoundException e){
+            
+        }
+         
+         
+        File inputFileStream = new File("data.txt");
+        inputFileStream.delete();
+        
+        
+        
+         
+         
+         
+        }
+    }
+    
+    public void change(String name, String newPhoneNumber){
+        changeNumber(root, name, newPhoneNumber);
+    }
+    
+    public void changeNumber(Person root, String name, String newPhoneNumber){
+        if (root != null && root.getName().hashCode() != name.hashCode()) {
+            searchFor(root.getLeft(), name);
+            if (root.getName().hashCode() != name.hashCode()) {
+
+                searchFor(root.getRight(), name);
+            }
+
+        }
+
+        if (root != null && root.getName().hashCode() == name.hashCode()) {
+            root.setPhoneNumber(newPhoneNumber);
+        }
+        
     }
         
             
