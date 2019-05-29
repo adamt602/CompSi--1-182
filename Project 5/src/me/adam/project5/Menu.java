@@ -7,6 +7,7 @@
  */
 package me.adam.project5;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class Menu {
@@ -20,7 +21,7 @@ public class Menu {
             System.out.println("\n\nPress one of the following corresponding numbers");
             System.out.println("[1] To add somone to the phone book");
             System.out.println("[2] To delete someone from the phone book");
-            System.out.println("[3] To search for someone in the phone book");
+            System.out.println("[3] To print out everyone in the phone book");
             System.out.println("[4] To find the exact person you are looking for.");
             System.out.println("[5] To change phone number.");
             System.out.println("[6] To quite the program");
@@ -68,6 +69,8 @@ public class Menu {
                
 
                 case 6:
+                    File inputFileStream = new File("data.txt");
+                    inputFileStream.delete();
                     tree.WriteTo();
                     System.exit(0);
                     break;

@@ -215,8 +215,7 @@ public class PhoneBook {
         }
          
          
-        File inputFileStream = new File("data.txt");
-        inputFileStream.delete();
+        
         
         
         
